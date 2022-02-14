@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-
+#########################################################################################################################################
 # Now I import all the datasets I have built up in order to make our analysis
 
 years = [2010,2011,2012,2013,2014,2015,2016]
@@ -33,6 +33,17 @@ nig_pol = niger_df['PM2.5']
 iraq_pol = iraq_df['PM2.5']
 pak_pol = pakistan_df['PM2.5']
 
+# we take 2010 as reference year to see increments or decrements in the following years
+nep_pol = np.divide(nep_pol,nep_pol[0])
+india_pol = np.divide(india_pol,india_pol[0])
+qat_pol = np.divide(qat_pol,qat_pol[0])
+saab_pol = np.divide(saab_pol,saab_pol[0])
+egy_pol = np.divide(egy_pol,egy_pol[0])
+ban_pol = np.divide(ban_pol,ban_pol[0])
+chi_pol = np.divide(chi_pol,chi_pol[0])
+nig_pol = np.divide(nig_pol,nig_pol[0])
+iraq_pol = np.divide(iraq_pol,iraq_pol[0])
+pak_pol = np.divide(pak_pol,pak_pol[0])
 
 plt.plot(years,nep_pol,label='Nepal')
 plt.plot(years,india_pol,label='India')
@@ -46,10 +57,13 @@ plt.plot(years,iraq_pol,label='Iraq')
 plt.plot(years,pak_pol,label='Pakistan')
 plt.xlabel('Years')
 plt.ylabel('Pollution index')
-plt.legend(bbox_to_anchor=(1.05, 1.0))
+plt.legend(facecolor='white',framealpha=1)
 # plt.legend(facecolor='white', framealpha=1)
 plt.title('PM 2.5 pollution - top 10 countries')
 plt.show()
+
+#########################################################################################################################################
+#########################################################################################################################################
 
 # we saw the value of the parameter PM 2.5
 # now we want to see if there are correlations between an increment of pollution and the usage of internet
@@ -60,6 +74,9 @@ plt.show()
 #                           - to see the correlations between each parameter and the pollution
 # 
 # this should be done for each country
+
+#########################################################################################################################################
+#########################################################################################################################################
 #
 # Nepal
 nep_pol = nepal_df['PM2.5']                         # taking data of the pollution
@@ -83,11 +100,12 @@ plt.plot(years,nep_bro,label='Broadcast')
 plt.plot(years,nep_mob,label='Mobile subscriptions')
 plt.plot(years,nep_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Nepal')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
 
+#########################################################################################################################################
 
 # India
 
@@ -112,11 +130,13 @@ plt.plot(years,india_bro,label='Broadcast')
 plt.plot(years,india_mob,label='Mobile subscriptions')
 plt.plot(years,india_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('India')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
 
+
+#########################################################################################################################################
 
 # Qatar
 
@@ -141,10 +161,13 @@ plt.plot(years,qatar_bro,label='Broadcast')
 plt.plot(years,qatar_mob,label='Mobile subscriptions')
 plt.plot(years,qatar_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Qatar')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
+
+
+#########################################################################################################################################
 
 # Saudi Arabia
 
@@ -169,11 +192,12 @@ plt.plot(years,saab_bro,label='Broadcast')
 plt.plot(years,saab_mob,label='Mobile subscriptions')
 plt.plot(years,saab_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Saudi Arabia')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
 
+#########################################################################################################################################
 
 # Egypt
 
@@ -198,10 +222,13 @@ plt.plot(years,egy_bro,label='Broadcast')
 plt.plot(years,egy_mob,label='Mobile subscriptions')
 plt.plot(years,egy_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Egypt')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
+
+
+#########################################################################################################################################
 
 # Bangladesh
 
@@ -231,6 +258,9 @@ plt.title('Bangladesh')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
 
+
+#########################################################################################################################################
+
 # China
 
 chi_pol = china_df['PM2.5']                       # taking data of the pollution
@@ -254,10 +284,13 @@ plt.plot(years,chi_bro,label='Broadcast')
 plt.plot(years,chi_mob,label='Mobile subscriptions')
 plt.plot(years,chi_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('China')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
+
+
+#########################################################################################################################################
 
 # Niger
 
@@ -282,11 +315,13 @@ plt.plot(years,nig_bro,label='Broadcast')
 plt.plot(years,nig_mob,label='Mobile subscriptions')
 plt.plot(years,nig_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Niger')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
 
+
+#########################################################################################################################################
 
 # Iraq
 
@@ -307,14 +342,17 @@ iraq_sch = np.divide(iraq_sch,iraq_sch[0])
 plt.figure(figsize=(8,5))
 plt.plot(years,iraq_pol,label='PM 2.5')
 plt.plot(years,iraq_int,label='Internet users')
-plt.plot(years,iraq_bro,label='Broadcast')
+#plt.plot(years,iraq_bro,label='Broadcast')
 plt.plot(years,iraq_mob,label='Mobile subscriptions')
 plt.plot(years,iraq_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Iraq')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
+
+
+#########################################################################################################################################
 
 # Pakistan
 
@@ -339,7 +377,31 @@ plt.plot(years,pak_bro,label='Broadcast')
 plt.plot(years,pak_mob,label='Mobile subscriptions')
 plt.plot(years,pak_sch,label='Share')
 plt.xlabel('Years')
-plt.ylabel('Percentual variation')
+plt.ylabel('Percentage variation')
 plt.title('Pakistan')
 plt.legend(facecolor='white',framealpha=1)
 plt.show()
+
+#########################################################################################################################################
+#########################################################################################################################################
+plt.figure()
+plt.subplot(1,2,1)
+plt.plot(years,nep_pol,label='PM 2.5')
+plt.plot(years,nep_int,label='Internet users')
+plt.plot(years,nep_bro,label='Broadcast')
+plt.plot(years,nep_mob,label='Mobile subscriptions')
+plt.plot(years,nep_sch,label='Share')
+plt.xlabel('Years')
+plt.ylabel('Percentage variation')
+plt.title('Nepal')
+
+plt.subplot(1,2,2)
+plt.figure(figsize=(8,5))
+plt.plot(years,india_pol,label='PM 2.5')
+plt.plot(years,india_int,label='Internet users')
+plt.plot(years,india_bro,label='Broadcast')
+plt.plot(years,india_mob,label='Mobile subscriptions')
+plt.plot(years,india_sch,label='Share')
+plt.xlabel('Years')
+plt.ylabel('Percentage variation')
+plt.title('India')
