@@ -12,7 +12,7 @@ mobile_sub_df = pd.read_csv('mobile-cellular-subscriptions-per-100-people.csv')
 share_df = pd.read_csv('share-of-individuals-using-the-internet.csv')
 
 # now we estract the datas we are interested in
-index = [2010,2011,2012,2013,2014,2015,2016]
+year = ['2010','2011','2012','2013','2014','2015','2016']
 
 # finding data for the pm2.5 pollution in Nepal
 np10 = global_pollution_df.loc[global_pollution_df['Country Name'] == 'Nepal', '2010'].iloc[0]
@@ -48,8 +48,9 @@ nsh = share_df.loc[share_df['Entity']=='Nepal','Individuals using the Internet (
 nepal_share = [nsh[4617],nsh[4618],nsh[4619],nsh[4620],nsh[4621],nsh[4622],nsh[4623]]
 
 nepal_df = pd.DataFrame({'PM2.5':nepal_pollution,'Internet_users' : nepal_users,'Broadcast':nepal_broadcast,'Mobile_subscriptions':nepal_mobile,'Share' : nepal_share})
-nepal_df.index=index
-
+nepal_df.index=year
+nepal_df.index.name = 'Year'
 print(nepal_df)
 
 nepal_df.to_csv('10_16_01_nepal.csv')
+print(nepal_df.corr())
