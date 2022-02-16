@@ -48,8 +48,7 @@ nsh = share_df.loc[share_df['Entity']=='India','Individuals using the Internet (
 india_share = [nsh[3052],nsh[3053],nsh[3054],nsh[3055],nsh[3056],nsh[3057],nsh[3058]]
 
 india_df = pd.DataFrame({'PM2.5':india_pollution,'Internet_users' : india_users,'Broadcast':india_broadcast,'Mobile_subscriptions':india_mobile,'Share' : india_share})
-india_df.index=index
-
+#india_df.index=index
 print(india_df)
 
 india_df.to_csv('10_16_02_india.csv')
