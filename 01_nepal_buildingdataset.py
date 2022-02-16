@@ -48,9 +48,7 @@ nsh = share_df.loc[share_df['Entity']=='Nepal','Individuals using the Internet (
 nepal_share = [nsh[4617],nsh[4618],nsh[4619],nsh[4620],nsh[4621],nsh[4622],nsh[4623]]
 
 nepal_df = pd.DataFrame({'PM2.5':nepal_pollution,'Internet_users' : nepal_users,'Broadcast':nepal_broadcast,'Mobile_subscriptions':nepal_mobile,'Share' : nepal_share})
-#nepal_df.index=year
-#nepal_df.index.name = 'Year'
 print(nepal_df)
 
 nepal_df.to_csv('10_16_01_nepal.csv')
-print(nepal_df.corr()
+print(nepal_df.corr())
