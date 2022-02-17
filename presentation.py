@@ -2,11 +2,13 @@
 #   IMPORTING LIBRARIES
 #from pyexpat import features
 from importlib.util import spec_from_file_location
+from tkinter import Button
 import streamlit as st
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
+import seaborn as sn
 #############################################################################################################################################
 #   IMPORTING DATABASES
 global_pollution_df = pd.read_csv('PM2.5 Global Air Pollution 2010-2017.csv')
@@ -147,7 +149,9 @@ with dataset:
             # now we plot a graph
             new_nepal_df = pd.DataFrame({'PM2.5':nep_pol,'Internet_users' : nep_int,'Broadcast':nep_bro,'Mobile_subscriptions':nep_mob,'Share' : nep_sch})
             new_nepal_df.index = years 
+            st.subheader('The dataset')
             st.dataframe(nepal_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(nepal_df.corr())
             st.line_chart(new_nepal_df)
 
@@ -168,14 +172,18 @@ with dataset:
             # now we plot a graph
             new_india_df = pd.DataFrame({'PM2.5':india_pol,'Internet_users' : india_int,'Broadcast':india_bro,'Mobile_subscriptions':india_mob,'Share' : india_sch})
             new_india_df.index = years
+            st.subheader('The dataset')
             st.dataframe(india_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(india_df.corr())
             st.line_chart(new_india_df)
 
         elif country_choice == 'Qatar':
             qatar_df.index = years
             qatar_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(qatar_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(qatar_df.corr())            
             qatar_pol = qatar_df['PM2.5']                       # taking data of the pollution
             qatar_int = qatar_df['Internet_users']              # taking data for the internet usage
@@ -196,7 +204,9 @@ with dataset:
         elif country_choice == 'Saudi Arabia':
             saudiarabia_df.index = years
             saudiarabia_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(saudiarabia_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(saudiarabia_df.corr())
             saab_pol = saudiarabia_df['PM2.5']                       # taking data of the pollution
             saab_int = saudiarabia_df['Internet_users']              # taking data for the internet usage
@@ -216,8 +226,10 @@ with dataset:
         elif country_choice == 'Egypt':
             egypt_df.index = years
             egypt_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(egypt_df)
             st.dataframe(egypt_df.corr())
+            st.subheader('Correlation Matrix')
             egy_pol = egypt_df['PM2.5']                       # taking data of the pollution
             egy_int = egypt_df['Internet_users']              # taking data for the internet usage
             egy_bro = egypt_df['Broadcast']                   # taking data for broadcast
@@ -236,7 +248,9 @@ with dataset:
         elif country_choice == 'Bangladesh':
             bangladesh_df.index = years
             bangladesh_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(bangladesh_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(bangladesh_df.corr())   
             ban_pol = bangladesh_df['PM2.5']                       # taking data of the pollution
             ban_int = bangladesh_df['Internet_users']              # taking data for the internet usage
@@ -256,7 +270,9 @@ with dataset:
         elif country_choice == 'China':
             china_df.index = years
             china_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(china_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(china_df.corr())
             chi_pol = china_df['PM2.5']                       # taking data of the pollution
             chi_int = china_df['Internet_users']              # taking data for the internet usage
@@ -276,7 +292,9 @@ with dataset:
         elif country_choice == 'Niger':
             niger_df.index = years
             niger_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(niger_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(niger_df.corr())
             nig_pol = niger_df['PM2.5']                       # taking data of the pollution
             nig_int = niger_df['Internet_users']              # taking data for the internet usage
@@ -296,7 +314,9 @@ with dataset:
         elif country_choice == 'Iraq':
             iraq_df.index = years
             iraq_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(iraq_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(iraq_df.corr())
             iraq_pol = iraq_df['PM2.5']                       # taking data of the pollution
             iraq_int = iraq_df['Internet_users']              # taking data for the internet usage
@@ -306,17 +326,29 @@ with dataset:
             # now we want to find out the increment or decrement of each parameter
             iraq_pol = np.divide(iraq_pol,iraq_pol[0])
             iraq_int = np.divide(iraq_int,iraq_int[0])
-            iraq_bro = np.divide(iraq_bro,iraq_bro[0])
             iraq_mob = np.divide(iraq_mob,iraq_mob[0])
             iraq_sch = np.divide(iraq_sch,iraq_sch[0])
-            new_iraq_df = pd.DataFrame({'PM2.5':iraq_pol,'Internet_users':iraq_int,'Broadcast':iraq_bro,'Mobile_subscriptions':iraq_mob,'Share':iraq_sch})
+            new_iraq_df = pd.DataFrame({'PM2.5':iraq_pol,'Internet_users':iraq_int,'Mobile_subscriptions':iraq_mob,'Share':iraq_sch})
             new_iraq_df.index = years
             st.line_chart(new_iraq_df)
+            # since the increments of broadcast parameter hides the other increments, firstly this parameter is hidden and with this button we unhide it
+            iraq_button = st.button('Graph with Broadcast parameter')
+            if iraq_button:
+                iraq_pol = np.divide(iraq_pol,iraq_pol[0])
+                iraq_int = np.divide(iraq_int,iraq_int[0])
+                iraq_bro = np.divide(iraq_bro,iraq_bro[0])
+                iraq_mob = np.divide(iraq_mob,iraq_mob[0])
+                iraq_sch = np.divide(iraq_sch,iraq_sch[0])
+                new_iraq_df = pd.DataFrame({'PM2.5':iraq_pol,'Internet_users':iraq_int,'Broadcast':iraq_bro,'Mobile_subscriptions':iraq_mob,'Share':iraq_sch})
+                new_iraq_df.index = years
+                st.line_chart(new_iraq_df)
 
         else:
             pakistan_df.index = years
             pakistan_df.index.name = "Year"
+            st.subheader('The dataset')
             st.dataframe(pakistan_df)
+            st.subheader('Correlation Matrix')
             st.dataframe(pakistan_df.corr())
             pak_pol = pakistan_df['PM2.5']                       # taking data of the pollution
             pak_int = pakistan_df['Internet_users']              # taking data for the internet usage
@@ -334,17 +366,192 @@ with dataset:
             st.line_chart(new_pakistan_df)         
 
 #############################################################################################################################################
-#   FOURTH BUTTON
+#       NOW WE WANT TO MAKE SOME PREDICTION FROM THE DATA WE HAVE
 #############################################################################################################################################
-with features:
-    st.header('An overview of pollution')
-    button = st.selectbox('select',['True','bho'])
-    if button == 'True':
-        st.write('success')
-    else:
-        st.write('bravo')
-
 
 with model_training:
     st.header('Time to train the model')
-    st.text('Some text, its a description')
+    #st.text('Some text, its a description')
+    model_button = st.checkbox('Train model')
+    if model_button == True:       # we can see the new database for each country
+        country_choice_2 = st.selectbox('Select Country',['Nepal','India','Qatar','Saudi Arabia','Egypt','Bangladesh','China','Niger','Iraq','Pakistan'])
+        nepal_df = pd.read_csv('10_16_01_nepal.csv')
+        india_df = pd.read_csv('10_16_02_india.csv')
+        qatar_df = pd.read_csv('10_16_03_qatar.csv')
+        saudiarabia_df = pd.read_csv('10_16_04_saudiarabia.csv')
+        egypt_df = pd.read_csv('10_16_05_egypt.csv')
+        bangladesh_df = pd.read_csv('10_16_06_bangladesh.csv')
+        china_df = pd.read_csv('10_16_07_china.csv')
+        niger_df = pd.read_csv('10_16_08_niger.csv')
+        iraq_df = pd.read_csv('10_16_09_iraq.csv')
+        pakistan_df = pd.read_csv('10_16_10_pakistan.csv')
+
+        if country_choice_2 == 'Nepal':
+            y = nepal_df['PM2.5']
+            X =[nepal_df['Broadcast'],nepal_df['Internet_users'],nepal_df['Mobile_subscriptions'],nepal_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'India':
+            y = india_df['PM2.5']
+            X =[india_df['Broadcast'],india_df['Internet_users'],india_df['Mobile_subscriptions'],india_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'Qatar':
+            y = qatar_df['PM2.5']
+            X =[qatar_df['Broadcast'],qatar_df['Internet_users'],qatar_df['Mobile_subscriptions'],qatar_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'Saudi Arabia':
+            y = saudiarabia_df['PM2.5']
+            X =[saudiarabia_df['Broadcast'],saudiarabia_df['Internet_users'],saudiarabia_df['Mobile_subscriptions'],saudiarabia_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'Egypt':
+            y = egypt_df['PM2.5']
+            X =[egypt_df['Broadcast'],egypt_df['Internet_users'],egypt_df['Mobile_subscriptions'],egypt_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'Bangladesh':
+            y = bangladesh_df['PM2.5']
+            X =[bangladesh_df['Broadcast'],bangladesh_df['Internet_users'],bangladesh_df['Mobile_subscriptions'],bangladesh_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'China':
+            y = china_df['PM2.5']
+            X =[china_df['Broadcast'],china_df['Internet_users'],china_df['Mobile_subscriptions'],china_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'Niger':
+            y = niger_df['PM2.5']
+            X =[niger_df['Broadcast'],niger_df['Internet_users'],niger_df['Mobile_subscriptions'],niger_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        elif country_choice_2 == 'Iraq':
+            y = iraq_df['PM2.5']
+            X =[iraq_df['Broadcast'],iraq_df['Internet_users'],iraq_df['Mobile_subscriptions'],iraq_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
+
+        else:
+            y = pakistan_df['PM2.5']
+            X =[pakistan_df['Broadcast'],pakistan_df['Internet_users'],pakistan_df['Mobile_subscriptions'],pakistan_df['Share']]
+            X = np.transpose(X) # transpose so input vectors
+            X = np.c_[X, np.ones(X.shape[0])]  # add bias term
+            linreg = np.linalg.lstsq(X, y, rcond=None)[0]
+            fig = plt.figure()
+            years_lin_reg = ['2017','2019','2020','2021','2022']
+            plt.scatter(years,y)
+            plt.scatter(years_lin_reg,linreg,c='red')
+            plt.plot(years,y)
+            plt.plot(years_lin_reg,linreg,c='red')
+            plt.xlabel("Year")
+            plt.ylabel("PM 2.5")
+            plt.title('PM 2.5 forecast')
+            st.write(fig)
