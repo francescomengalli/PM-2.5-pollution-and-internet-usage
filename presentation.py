@@ -370,7 +370,7 @@ with dataset:
 #############################################################################################################################################
 
 with model_training:
-    st.header('Time to train the model')
+    st.header('Can we predict the value of PM 2.5?')
     #st.text('Some text, its a description')
     model_button = st.checkbox('Train model')
     if model_button == True:       # we can see the new database for each country
