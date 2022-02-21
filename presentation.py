@@ -28,9 +28,9 @@ with header:
     st.title('PM 2.5 and Internet usage')
     st.text('Is there any correlation between pollution and using the Internet?')
     st.write('PM 2.5 indicates little pieces smaller than or equal to 2.5 micron (1/4 of the more famous PM 10)')
-    first_button = st.checkbox('Original databases')
+    first_button = st.checkbox('Original database')
     second_button = st.checkbox('Overview of the first 10 most polluting countries')
-    third_button = st.checkbox('New databases')
+    third_button = st.checkbox('New database')
 
 
 # Now we have the possibility to choose what to see in the presentation
@@ -41,7 +41,7 @@ with header:
 with dataset:
     if first_button == True:            # here we can see the five original databases without any change or improvement
         with dataset:
-            st.title('Original databases')
+            st.title('Original database')
             st.text('Here we can see the original databases')
             choice = st.selectbox('Select',["PM 2.5","Internet usage"])
             if choice == "PM 2.5":
@@ -113,8 +113,9 @@ with dataset:
         st.image(image,caption='10 most polluting countries')
         st.write('Population in this area: 5,109,754,000')
         st.write('This is the 68.46% of the global population in 2016')
+        st.subheader('Increment of PM 2.5 pollution between 2010-2016')
         st.line_chart(graph_df)
-        st.write('Increment or the decrement of pollution in these countries')
+
 
 #############################################################################################################################################
 #   THIRD BUTTON                we can see the new databases for each country and the correlation matrix
@@ -137,7 +138,7 @@ with dataset:
             nepal_df.index.name = 'Year'
             nep_pol = nepal_df['PM2.5']                         # taking data of the pollution
             nep_int = nepal_df['Internet_users']                # taking data for the internet usage
-            nep_bro = nepal_df['Broadcast']                     # taking data for broadcast
+            nep_bro = nepal_df['Broadband']                     # taking data for broadband
             nep_mob = nepal_df['Mobile_subscriptions']          # taking data for mobile subscriptions
             nep_sch = nepal_df['Share']                         # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -147,7 +148,7 @@ with dataset:
             nep_mob = np.divide(nep_mob,nep_mob[0])
             nep_sch = np.divide(nep_sch,nep_sch[0])
             # now we plot a graph
-            new_nepal_df = pd.DataFrame({'PM2.5':nep_pol,'Internet_users' : nep_int,'Broadcast':nep_bro,'Mobile_subscriptions':nep_mob,'Share' : nep_sch})
+            new_nepal_df = pd.DataFrame({'PM2.5':nep_pol,'Internet_users' : nep_int,'Broadband':nep_bro,'Mobile_subscriptions':nep_mob,'Share' : nep_sch})
             new_nepal_df.index = years 
             st.subheader('The dataset')
             st.dataframe(nepal_df)
@@ -160,7 +161,7 @@ with dataset:
             india_df.index.name = 'Year'
             india_pol = india_df['PM2.5']                       # taking data of the pollution
             india_int = india_df['Internet_users']              # taking data for the internet usage
-            india_bro = india_df['Broadcast']                   # taking data for broadcast
+            india_bro = india_df['Broadband']                   # taking data for broadband
             india_mob = india_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             india_sch = india_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -170,7 +171,7 @@ with dataset:
             india_mob = np.divide(india_mob,india_mob[0])
             india_sch = np.divide(india_sch,india_sch[0])
             # now we plot a graph
-            new_india_df = pd.DataFrame({'PM2.5':india_pol,'Internet_users' : india_int,'Broadcast':india_bro,'Mobile_subscriptions':india_mob,'Share' : india_sch})
+            new_india_df = pd.DataFrame({'PM2.5':india_pol,'Internet_users' : india_int,'Broadband':india_bro,'Mobile_subscriptions':india_mob,'Share' : india_sch})
             new_india_df.index = years
             st.subheader('The dataset')
             st.dataframe(india_df)
@@ -187,7 +188,7 @@ with dataset:
             st.dataframe(qatar_df.corr())            
             qatar_pol = qatar_df['PM2.5']                       # taking data of the pollution
             qatar_int = qatar_df['Internet_users']              # taking data for the internet usage
-            qatar_bro = qatar_df['Broadcast']                   # taking data for broadcast
+            qatar_bro = qatar_df['Broadband']                   # taking data for broadband
             qatar_mob = qatar_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             qatar_sch = qatar_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -197,7 +198,7 @@ with dataset:
             qatar_mob = np.divide(qatar_mob,qatar_mob[0])
             qatar_sch = np.divide(qatar_sch,qatar_sch[0])
             # now we plot a graph
-            new_qatar_df = pd.DataFrame({'PM2.5':qatar_pol,'Internet_users' : qatar_int,'Broadcast':qatar_bro,'Mobile_subscriptions':qatar_mob,'Share' : qatar_sch})
+            new_qatar_df = pd.DataFrame({'PM2.5':qatar_pol,'Internet_users' : qatar_int,'Broadband':qatar_bro,'Mobile_subscriptions':qatar_mob,'Share' : qatar_sch})
             new_qatar_df.index = years
             st.line_chart(new_qatar_df)
 
@@ -210,7 +211,7 @@ with dataset:
             st.dataframe(saudiarabia_df.corr())
             saab_pol = saudiarabia_df['PM2.5']                       # taking data of the pollution
             saab_int = saudiarabia_df['Internet_users']              # taking data for the internet usage
-            saab_bro = saudiarabia_df['Broadcast']                   # taking data for broadcast
+            saab_bro = saudiarabia_df['Broadband']                   # taking data for broadband
             saab_mob = saudiarabia_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             saab_sch = saudiarabia_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -219,7 +220,7 @@ with dataset:
             saab_bro = np.divide(saab_bro,saab_bro[0])
             saab_mob = np.divide(saab_mob,saab_mob[0])
             saab_sch = np.divide(saab_sch,saab_sch[0])
-            new_saudiarabia_df = pd.DataFrame({'PM2.5':saab_pol,'Internet_users':saab_int,'Broadcast':saab_bro,'Mobile_subscriptions':saab_mob,'Share' : saab_sch})
+            new_saudiarabia_df = pd.DataFrame({'PM2.5':saab_pol,'Internet_users':saab_int,'Broadband':saab_bro,'Mobile_subscriptions':saab_mob,'Share' : saab_sch})
             new_saudiarabia_df.index = years
             st.line_chart(new_saudiarabia_df)
 
@@ -232,7 +233,7 @@ with dataset:
             st.subheader('Correlation Matrix')
             egy_pol = egypt_df['PM2.5']                       # taking data of the pollution
             egy_int = egypt_df['Internet_users']              # taking data for the internet usage
-            egy_bro = egypt_df['Broadcast']                   # taking data for broadcast
+            egy_bro = egypt_df['Broadband']                   # taking data for broadband
             egy_mob = egypt_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             egy_sch = egypt_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -241,7 +242,7 @@ with dataset:
             egy_bro = np.divide(egy_bro,egy_bro[0])
             egy_mob = np.divide(egy_mob,egy_mob[0])
             egy_sch = np.divide(egy_sch,egy_sch[0])
-            new_egypt_df = pd.DataFrame({'PM2.5':egy_pol,'Internet_users':egy_int,'Broadcast':egy_bro,'Mobile_subscriptions':egy_mob,'Share':egy_sch})
+            new_egypt_df = pd.DataFrame({'PM2.5':egy_pol,'Internet_users':egy_int,'Broadband':egy_bro,'Mobile_subscriptions':egy_mob,'Share':egy_sch})
             new_egypt_df.index = years
             st.line_chart(new_egypt_df)
 
@@ -254,7 +255,7 @@ with dataset:
             st.dataframe(bangladesh_df.corr())   
             ban_pol = bangladesh_df['PM2.5']                       # taking data of the pollution
             ban_int = bangladesh_df['Internet_users']              # taking data for the internet usage
-            ban_bro = bangladesh_df['Broadcast']                   # taking data for broadcast
+            ban_bro = bangladesh_df['Broadband']                   # taking data for broadband
             ban_mob = bangladesh_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             ban_sch = bangladesh_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -263,7 +264,7 @@ with dataset:
             ban_bro = np.divide(ban_bro,ban_bro[0])
             ban_mob = np.divide(ban_mob,ban_mob[0])
             ban_sch = np.divide(ban_sch,ban_sch[0])   
-            new_bangladesh_df = pd.DataFrame({'PM2.5':ban_pol,'Internet_users':ban_int,'Broadcast':ban_bro,'Mobile_subscriptions':ban_mob,'Share':ban_sch})
+            new_bangladesh_df = pd.DataFrame({'PM2.5':ban_pol,'Internet_users':ban_int,'Broadband':ban_bro,'Mobile_subscriptions':ban_mob,'Share':ban_sch})
             new_bangladesh_df.index = years
             st.line_chart(new_bangladesh_df)
 
@@ -276,7 +277,7 @@ with dataset:
             st.dataframe(china_df.corr())
             chi_pol = china_df['PM2.5']                       # taking data of the pollution
             chi_int = china_df['Internet_users']              # taking data for the internet usage
-            chi_bro = china_df['Broadcast']                   # taking data for broadcast
+            chi_bro = china_df['Broadband']                   # taking data for broadband
             chi_mob = china_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             chi_sch = china_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -285,7 +286,7 @@ with dataset:
             chi_bro = np.divide(chi_bro,chi_bro[0])
             chi_mob = np.divide(chi_mob,chi_mob[0])
             chi_sch = np.divide(chi_sch,chi_sch[0])        
-            new_china_df = pd.DataFrame({'PM2.5':chi_pol,'Internet_users':chi_int,'Broadcast':chi_bro,'Mobile_subscriptions':chi_mob,'Share':chi_sch})
+            new_china_df = pd.DataFrame({'PM2.5':chi_pol,'Internet_users':chi_int,'Broadband':chi_bro,'Mobile_subscriptions':chi_mob,'Share':chi_sch})
             new_china_df.index = years
             st.line_chart(new_china_df)
 
@@ -298,7 +299,7 @@ with dataset:
             st.dataframe(niger_df.corr())
             nig_pol = niger_df['PM2.5']                       # taking data of the pollution
             nig_int = niger_df['Internet_users']              # taking data for the internet usage
-            nig_bro = niger_df['Broadcast']                   # taking data for broadcast
+            nig_bro = niger_df['Broadband']                   # taking data for broadband
             nig_mob = niger_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             nig_sch = niger_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -307,7 +308,7 @@ with dataset:
             nig_bro = np.divide(nig_bro,nig_bro[0])
             nig_mob = np.divide(nig_mob,nig_mob[0])
             nig_sch = np.divide(nig_sch,nig_sch[0])
-            new_niger_df = pd.DataFrame({'PM2.5':nig_pol,'Internet_users':nig_int,'Broadcast':nig_bro,'Mobile_subscriptions':nig_mob,'Share':nig_sch})
+            new_niger_df = pd.DataFrame({'PM2.5':nig_pol,'Internet_users':nig_int,'Broadband':nig_bro,'Mobile_subscriptions':nig_mob,'Share':nig_sch})
             new_niger_df.index = years
             st.line_chart(new_niger_df)
 
@@ -320,7 +321,7 @@ with dataset:
             st.dataframe(iraq_df.corr())
             iraq_pol = iraq_df['PM2.5']                       # taking data of the pollution
             iraq_int = iraq_df['Internet_users']              # taking data for the internet usage
-            iraq_bro = iraq_df['Broadcast']                   # taking data for broadcast
+            iraq_bro = iraq_df['Broadband']                   # taking data for broadband
             iraq_mob = iraq_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             iraq_sch = iraq_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -331,15 +332,15 @@ with dataset:
             new_iraq_df = pd.DataFrame({'PM2.5':iraq_pol,'Internet_users':iraq_int,'Mobile_subscriptions':iraq_mob,'Share':iraq_sch})
             new_iraq_df.index = years
             st.line_chart(new_iraq_df)
-            # since the increments of broadcast parameter hides the other increments, firstly this parameter is hidden and with this button we unhide it
-            iraq_button = st.button('Graph with Broadcast parameter')
+            # since the increments of broadband parameter hides the other increments, firstly this parameter is hidden and with this button we unhide it
+            iraq_button = st.button('Graph with Broadband parameter')
             if iraq_button:
                 iraq_pol = np.divide(iraq_pol,iraq_pol[0])
                 iraq_int = np.divide(iraq_int,iraq_int[0])
                 iraq_bro = np.divide(iraq_bro,iraq_bro[0])
                 iraq_mob = np.divide(iraq_mob,iraq_mob[0])
                 iraq_sch = np.divide(iraq_sch,iraq_sch[0])
-                new_iraq_df = pd.DataFrame({'PM2.5':iraq_pol,'Internet_users':iraq_int,'Broadcast':iraq_bro,'Mobile_subscriptions':iraq_mob,'Share':iraq_sch})
+                new_iraq_df = pd.DataFrame({'PM2.5':iraq_pol,'Internet_users':iraq_int,'Broadband':iraq_bro,'Mobile_subscriptions':iraq_mob,'Share':iraq_sch})
                 new_iraq_df.index = years
                 st.line_chart(new_iraq_df)
 
@@ -352,7 +353,7 @@ with dataset:
             st.dataframe(pakistan_df.corr())
             pak_pol = pakistan_df['PM2.5']                       # taking data of the pollution
             pak_int = pakistan_df['Internet_users']              # taking data for the internet usage
-            pak_bro = pakistan_df['Broadcast']                   # taking data for broadcast
+            pak_bro = pakistan_df['Broadband']                   # taking data for broadband
             pak_mob = pakistan_df['Mobile_subscriptions']        # taking data for mobile subscriptions
             pak_sch = pakistan_df['Share']                       # taking data for share
             # now we want to find out the increment or decrement of each parameter
@@ -361,7 +362,7 @@ with dataset:
             pak_bro = np.divide(pak_bro,pak_bro[0])
             pak_mob = np.divide(pak_mob,pak_mob[0])
             pak_sch = np.divide(pak_sch,pak_sch[0]) 
-            new_pakistan_df = pd.DataFrame({'PM2.5':pak_pol,'Internet_users':pak_int,'Broadcast':pak_bro,'Mobile_subscriptions':pak_mob,'Share':pak_sch})
+            new_pakistan_df = pd.DataFrame({'PM2.5':pak_pol,'Internet_users':pak_int,'Broadband':pak_bro,'Mobile_subscriptions':pak_mob,'Share':pak_sch})
             new_pakistan_df.index = years
             st.line_chart(new_pakistan_df)         
 
@@ -388,170 +389,280 @@ with model_training:
 
         if country_choice_2 == 'Nepal':
             y = nepal_df['PM2.5']
-            X =[nepal_df['Broadcast'],nepal_df['Internet_users'],nepal_df['Mobile_subscriptions'],nepal_df['Share']]
+            X =[nepal_df['Broadband'],nepal_df['Internet_users'],nepal_df['Mobile_subscriptions'],nepal_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 500000, max_value=1000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'India':
             y = india_df['PM2.5']
-            X =[india_df['Broadcast'],india_df['Internet_users'],india_df['Mobile_subscriptions'],india_df['Share']]
+            X =[india_df['Broadband'],india_df['Internet_users'],india_df['Mobile_subscriptions'],india_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 50000000, max_value=500000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'Qatar':
             y = qatar_df['PM2.5']
-            X =[qatar_df['Broadcast'],qatar_df['Internet_users'],qatar_df['Mobile_subscriptions'],qatar_df['Share']]
+            X =[qatar_df['Broadband'],qatar_df['Internet_users'],qatar_df['Mobile_subscriptions'],qatar_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 1000000, max_value=4000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'Saudi Arabia':
             y = saudiarabia_df['PM2.5']
-            X =[saudiarabia_df['Broadcast'],saudiarabia_df['Internet_users'],saudiarabia_df['Mobile_subscriptions'],saudiarabia_df['Share']]
+            X =[saudiarabia_df['Broadband'],saudiarabia_df['Internet_users'],saudiarabia_df['Mobile_subscriptions'],saudiarabia_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 5000000, max_value=30000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'Egypt':
             y = egypt_df['PM2.5']
-            X =[egypt_df['Broadcast'],egypt_df['Internet_users'],egypt_df['Mobile_subscriptions'],egypt_df['Share']]
+            X =[egypt_df['Broadband'],egypt_df['Internet_users'],egypt_df['Mobile_subscriptions'],egypt_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 20000000, max_value=60000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'Bangladesh':
             y = bangladesh_df['PM2.5']
-            X =[bangladesh_df['Broadcast'],bangladesh_df['Internet_users'],bangladesh_df['Mobile_subscriptions'],bangladesh_df['Share']]
+            X =[bangladesh_df['Broadband'],bangladesh_df['Internet_users'],bangladesh_df['Mobile_subscriptions'],bangladesh_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 5000000, max_value=40000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'China':
             y = china_df['PM2.5']
-            X =[china_df['Broadcast'],china_df['Internet_users'],china_df['Mobile_subscriptions'],china_df['Share']]
+            X =[china_df['Broadband'],china_df['Internet_users'],china_df['Mobile_subscriptions'],china_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 520000000, max_value=800000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'Niger':
             y = niger_df['PM2.5']
-            X =[niger_df['Broadcast'],niger_df['Internet_users'],niger_df['Mobile_subscriptions'],niger_df['Share']]
+            X =[niger_df['Broadband'],niger_df['Internet_users'],niger_df['Mobile_subscriptions'],niger_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 150000, max_value=3000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         elif country_choice_2 == 'Iraq':
             y = iraq_df['PM2.5']
-            X =[iraq_df['Broadcast'],iraq_df['Internet_users'],iraq_df['Mobile_subscriptions'],iraq_df['Share']]
+            X =[iraq_df['Broadband'],iraq_df['Internet_users'],iraq_df['Mobile_subscriptions'],iraq_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 1500000, max_value=30000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
 
         else:
             y = pakistan_df['PM2.5']
-            X =[pakistan_df['Broadcast'],pakistan_df['Internet_users'],pakistan_df['Mobile_subscriptions'],pakistan_df['Share']]
+            X =[pakistan_df['Broadband'],pakistan_df['Internet_users'],pakistan_df['Mobile_subscriptions'],pakistan_df['Share']]
             X = np.transpose(X) # transpose so input vectors
             X = np.c_[X, np.ones(X.shape[0])]  # add bias term
             linreg = np.linalg.lstsq(X, y, rcond=None)[0]
-            fig = plt.figure()
-            years_lin_reg = ['2017','2019','2020','2021','2022']
-            plt.scatter(years,y)
-            plt.scatter(years_lin_reg,linreg,c='red')
-            plt.plot(years,y)
-            plt.plot(years_lin_reg,linreg,c='red')
-            plt.xlabel("Year")
-            plt.ylabel("PM 2.5")
-            plt.title('PM 2.5 forecast')
-            st.write(fig)
+            st.write('Number of internet users:')
+            int_users = st.slider('Slide me', min_value= 13000000, max_value=40000000)
+            st.write('Fixed broadband subscriptions (per 100 people):')
+            int_bro = st.slider('Slide me', min_value= 0, max_value=100)
+            st.write('Mobile subscriptions (per 100 people):')
+            int_sub = st.slider('Slide me', min_value= 2, max_value=100)
+            st.write('Share of individuals using the internet:')
+            int_sha = st.slider('Slide me', min_value= 1, max_value=100)         
+            if st.button('RUN MODEL'):
+                forecast = linreg[0] + linreg[1]*int_users + linreg[2]*int_bro + linreg[3]*int_sub + linreg[4]*int_sha
+                year_lin_reg = ['2017']
+                fig = plt.figure()
+                plt.scatter(years,y)
+                plt.scatter(year_lin_reg,forecast,c='red')
+                plt.plot(years,y)
+                plt.plot(['2016','2017'],[nepal_df['PM2.5'][6],forecast],c='red')
+                plt.xlabel("Year")
+                plt.ylabel("PM 2.5")
+                plt.title('PM 2.5 forecast')
+                st.write(fig)
+                st.write('Forecasted value of PM 2.5: ', forecast)
